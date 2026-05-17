@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Braham — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">MB<span class="accent">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        {% if projects %}<li><a href="#projects">Projects</a></li>{% endif %}
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting mono">Hi, my name is</p>
+      <h1 class="hero-name">Mohamed Braham<span class="accent">.</span></h1>
+      <h2 class="hero-tagline">I build things &amp; share knowledge.</h2>
+      <p class="hero-bio">
+        Software engineer, content creator, and lifelong learner.
+        I'm passionate about building clean software and sharing what I learn —
+        on YouTube and beyond.
+      </p>
+      <div class="hero-actions">
+        <a href="#experience" class="btn btn-primary">View my CV</a>
+        <a href="#contact" class="btn btn-outline">Get in touch</a>
+      </div>
+      {% if social_links %}
+      <div class="hero-socials">
+        {% for link in social_links %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener" class="social-icon-link" title="{{ link.get_platform_display }}">
+          {% if link.platform == 'linkedin' %}
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          {% elif link.platform == 'youtube' %}
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          {% elif link.platform == 'github' %}
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          {% elif link.platform == 'twitter' %}
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          {% else %}
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/></svg>
+          {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="hero-scroll">
+      <span class="mono">scroll down</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title"><span class="accent mono">01.</span> About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Hello! I'm <strong>Mohamed Braham</strong>, a software engineer who loves turning ideas into
+            reality through code. I enjoy working across the full stack and I'm always looking to
+            learn new technologies and solve interesting problems.
+          </p>
+          <p>
+            Beyond coding, I create content on <strong>YouTube</strong> where I share tutorials,
+            project walkthroughs, and tech insights to help other developers grow.
+            I believe in building in public and sharing knowledge freely.
+          </p>
+          <p>
+            When I'm not at the keyboard, I enjoy exploring new ideas, connecting with the
+            tech community, and continuously improving my craft.
+          </p>
+        </div>
+        <div class="about-card">
+          <div class="about-avatar">
+            <span class="avatar-initials">MB</span>
+          </div>
+          <div class="about-quick">
+            <div class="quick-item">
+              <span class="quick-label mono">location</span>
+              <span class="quick-value">Available worldwide</span>
+            </div>
+            <div class="quick-item">
+              <span class="quick-label mono">focus</span>
+              <span class="quick-value">Software Engineering</span>
+            </div>
+            <div class="quick-item">
+              <span class="quick-label mono">content</span>
+              <span class="quick-value">YouTube Creator</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section section-alt" id="experience">
+    <div class="container">
+      <h2 class="section-title"><span class="accent mono">02.</span> Experience</h2>
+      {% if experiences %}
+      <div class="timeline">
+        {% for exp in experiences %}
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 class="timeline-title">{{ exp.title }}</h3>
+              <span class="timeline-period mono">{{ exp.start_date }} — {{ exp.end_date }}</span>
+            </div>
+            <p class="timeline-company">
+              {{ exp.company }}{% if exp.location %} &middot; {{ exp.location }}{% endif %}
+            </p>
+            <p class="timeline-desc">{{ exp.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <p class="mono">No experience entries yet — add them via <a href="/admin/" class="accent">Admin</a>.</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="section-title"><span class="accent mono">03.</span> Skills</h2>
+      {% if skills_by_category %}
+      <div class="skills-grid">
+        {% for category, skill_list in skills_by_category.items %}
+        <div class="skill-group">
+          <h3 class="skill-category mono">{{ category }}</h3>
+          <div class="skill-tags">
+            {% for skill in skill_list %}
+            <span class="skill-tag">{{ skill.name }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <p class="mono">No skills yet — add them via <a href="/admin/" class="accent">Admin</a>.</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  {% if projects %}
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <h2 class="section-title"><span class="accent mono">04.</span> Projects</h2>
+      <div class="projects-grid">
+        {% for project in projects %}
+        <div class="project-card">
+          <div class="project-header">
+            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/><path d="M8 3v4M16 3v4"/></svg>
+            {% if project.url %}
+            <a href="{{ project.url }}" target="_blank" rel="noopener" class="project-link" title="View project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            {% endif %}
+          </div>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+          {% if project.tag_list %}
+          <div class="project-tags">
+            {% for tag in project.tag_list %}
+            <span class="project-tag mono">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container contact-container">
+      <h2 class="section-title"><span class="accent mono">{% if projects %}05.{% else %}04.{% endif %}</span> Get In Touch</h2>
+      <p class="contact-intro">
+        Whether you have a project idea, a job opportunity, or just want to say hi —
+        my inbox is always open. I'll do my best to get back to you!
+      </p>
+      <div class="contact-links">
+        <a href="mailto:m.b.mohamed.braham@gmail.com" class="btn btn-primary">Send me an email</a>
+        {% for link in social_links %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener" class="btn btn-outline">
+          {{ link.label|default:link.get_platform_display }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="mono">Built with Django &mdash; Mohamed Braham &copy; 2026</p>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
