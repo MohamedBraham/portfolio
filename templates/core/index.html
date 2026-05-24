@@ -210,7 +210,6 @@
         my inbox is always open. I'll do my best to get back to you!
       </p>
       <div class="contact-links">
-        <a href="mailto:m.b.mohamed.braham@gmail.com" class="btn btn-primary">Send me an email</a>
         {% for link in social_links %}
         <a href="{{ link.url }}" target="_blank" rel="noopener" class="btn btn-outline">
           {{ link.label|default:link.get_platform_display }}
