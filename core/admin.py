@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Experience, Skill, Project, SocialLink
+from .models import Experience, Skill, Project, SocialLink, Education
 
 
 @admin.register(Experience)
@@ -18,6 +18,12 @@ class SkillAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ['title', 'url', 'order']
+    list_editable = ['order']
+
+
+@admin.register(Education)
+class EducationAdmin(admin.ModelAdmin):
+    list_display = ['degree', 'field', 'institution', 'start_year', 'end_year', 'order']
     list_editable = ['order']
 
 
