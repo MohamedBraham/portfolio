@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Experience, Skill, Project, SocialLink
+from .models import Experience, Skill, Project, SocialLink, Education
 
 
 def index(request):
@@ -13,10 +13,12 @@ def index(request):
 
     projects = Project.objects.all()
     social_links = SocialLink.objects.all()
+    educations = Education.objects.all()
 
     return render(request, 'core/index.html', {
         'experiences': experiences,
         'skills_by_category': skills_by_category,
         'projects': projects,
         'social_links': social_links,
+        'educations': educations,
     })

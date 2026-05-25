@@ -52,6 +52,21 @@ class Project(models.Model):
         return [t.strip() for t in self.tags.split(',') if t.strip()]
 
 
+class Education(models.Model):
+    institution = models.CharField(max_length=200)
+    degree = models.CharField(max_length=200)
+    field = models.CharField(max_length=200)
+    start_year = models.CharField(max_length=10)
+    end_year = models.CharField(max_length=10)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.degree} @ {self.institution}"
+
+
 class SocialLink(models.Model):
     PLATFORM_CHOICES = [
         ('linkedin', 'LinkedIn'),

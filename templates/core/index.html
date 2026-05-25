@@ -19,6 +19,7 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
+        {% if educations %}<li><a href="#education">Education</a></li>{% endif %}
         <li><a href="#skills">Skills</a></li>
         {% if projects %}<li><a href="#projects">Projects</a></li>{% endif %}
         <li><a href="#contact">Contact</a></li>
@@ -143,10 +144,33 @@
     </div>
   </section>
 
+  <!-- EDUCATION -->
+  {% if educations %}
+  <section class="section" id="education">
+    <div class="container">
+      <h2 class="section-title"><span class="accent mono">03.</span> Education</h2>
+      <div class="timeline">
+        {% for edu in educations %}
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 class="timeline-title">{{ edu.degree }}, {{ edu.field }}</h3>
+              <span class="timeline-period mono">{{ edu.start_year }}–{{ edu.end_year }}</span>
+            </div>
+            <p class="timeline-company">{{ edu.institution }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
   <!-- SKILLS -->
   <section class="section" id="skills">
     <div class="container">
-      <h2 class="section-title"><span class="accent mono">03.</span> Skills</h2>
+      <h2 class="section-title"><span class="accent mono">04.</span> Skills</h2>
       {% if skills_by_category %}
       <div class="skills-grid">
         {% for category, skill_list in skills_by_category.items %}
@@ -172,7 +196,7 @@
   {% if projects %}
   <section class="section section-alt" id="projects">
     <div class="container">
-      <h2 class="section-title"><span class="accent mono">04.</span> Projects</h2>
+      <h2 class="section-title"><span class="accent mono">05.</span> Projects</h2>
       <div class="projects-grid">
         {% for project in projects %}
         <div class="project-card">
@@ -203,7 +227,7 @@
   <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="container contact-container">
-      <h2 class="section-title"><span class="accent mono">{% if projects %}05.{% else %}04.{% endif %}</span> Get In Touch</h2>
+      <h2 class="section-title"><span class="accent mono">{% if projects %}06.{% else %}05.{% endif %}</span> Get In Touch</h2>
       <p class="contact-intro">
         Whether you have a project idea, a job opportunity, or just want to say hi —
         my inbox is always open. I'll do my best to get back to you!
